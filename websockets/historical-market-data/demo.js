@@ -44,7 +44,8 @@
         const uic = document.getElementById("idInstrumentId").value;
         const assetType = document.getElementById("idCbxAssetType").value;
         const horizon = document.getElementById("idCbxHorizon").value;
-        let url = demo.apiUrl + "/chart/v1/charts?Uic=" + uic + "&AssetType=" + assetType + "&FieldGroups=BlockInfo,ChartInfo,Data,DisplayAndFormat&Horizon=" + horizon;
+        let url = demo.apiUrl + "/chart/v3/charts?Uic=" + uic + "&AssetType=" + assetType + "&FieldGroups=BlockInfo,ChartInfo,Data,DisplayAndFormat&Horizon=" + horizon;
+
         if (upToTime !== undefined && upToTime !== null) {
             url += "&Mode=UpTo&Time=" + oldestSampleTime.toISOString();
         }
@@ -296,7 +297,7 @@
             }
         };
         fetch(
-            demo.apiUrl + "/chart/v1/charts/subscriptions",
+            demo.apiUrl + "/chart/v3/charts/subscriptions",
             {
                 "method": "POST",
                 "headers": {
@@ -351,7 +352,7 @@
      */
     function unsubscribe() {
         fetch(
-            demo.apiUrl + "/chart/v1/charts/subscriptions/" + encodeURIComponent(document.getElementById("idContextId").value),  // Add referenceId for more granular unsubscribe
+            demo.apiUrl + "/chart/v3/charts/subscriptions/" + encodeURIComponent(document.getElementById("idContextId").value),  // Add referenceId for more granular unsubscribe
             {
                 "method": "DELETE",
                 "headers": {
